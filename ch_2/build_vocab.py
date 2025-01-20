@@ -18,7 +18,7 @@ def download_text_data(url: str, filepath: str):
         raise ValueError("URL must be a valid text file endpoint. It must end with '.txt'")
     urllib.request.urlretrieve(url, filepath)
 
-def read_text_file(filepath: str = the_verdict_file_path) -> str:
+def read_text_file(filepath: str) -> str:
     """Read text file."""
     with open(filepath, "r", encoding="utf-8") as f:
         raw_text = f.read()
@@ -52,7 +52,7 @@ def create_vocab(preprocessed: list[str], debug: bool = True):
 def main(url: str = THE_VERDICT_URL, filepath: str = THE_VERDICT_FILE_PATH):
     """Build vocab from the verdict text."""
     download_text_data(url, filepath)
-    raw_text = read_text_file()
+    raw_text = read_text_file(filepath)
     words = convert_text_to_words(raw_text)
     vocab = create_vocab(words)
     return vocab

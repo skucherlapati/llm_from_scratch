@@ -6,11 +6,13 @@ import re
 logger = logging.getLogger(__name__)
 logging.basicConfig(encoding="utf-8", level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
+# STATIC VARS
 RE_TOKENIZER = re.compile(r"([,.:;?_!\"()\']|--|\s)")
-the_verdict_url = "https://raw.githubusercontent.com/rasbt/LLMs-from-scratch/refs/heads/main/ch02/01_main-chapter-code/the-verdict.txt"
-the_verdict_file_path = "the-verdict.txt"
+THE_VERDICT_URL = "https://raw.githubusercontent.com/rasbt/LLMs-from-scratch/refs/heads/main/ch02/01_main-chapter-code/the-verdict.txt"
+THE_VERDICT_FILE_PATH = "the-verdict.txt"
 
-def download_text_data(url: str = the_verdict_url, filepath: str = the_verdict_file_path):
+
+def download_text_data(url: str, filepath: str):
     """Download a text file from given url."""
     if not url.endswith(".txt"):
         raise ValueError("URL must be a valid text file endpoint. It must end with '.txt'")
@@ -47,9 +49,9 @@ def create_vocab(preprocessed: list[str], debug: bool = True):
     return vocab
 
 
-def main():
+def main(url: str = THE_VERDICT_URL, filepath: str = THE_VERDICT_FILE_PATH):
     """Build vocab from the verdict text."""
-    download_text_data()
+    download_text_data(url, filepath)
     raw_text = read_text_file()
     words = convert_text_to_words(raw_text)
     vocab = create_vocab(words)

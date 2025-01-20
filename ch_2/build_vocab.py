@@ -40,9 +40,9 @@ def create_vocab(preprocessed: list[str], debug: bool = True):
     logger.info(f"Vocab size: {vocab_size}")
     vocab = {token: ii for ii, token in enumerate(all_words)}
     if debug:
-        for ii, token in vocab.items():
+        for token, i in vocab.items():
             logger.debug(token)
-            if ii >= 50:
+            if i >= 50:
                 break
     return vocab
 

@@ -31,7 +31,7 @@ def convert_text_to_words(raw_text: str) -> list[str]:
     """Splits raw text into tokens."""
     preprocessed: list[str] = RE_TOKENIZER.split(raw_text)
     preprocessed = [item.strip() for item in preprocessed if item.strip()]
-    logger.debug(f"Length of text split into tokens: len(preprocessed)")
+    logger.debug(f"Length of text split into tokens: {len(preprocessed)}")
     logger.debug(preprocessed[:30])
     return preprocessed
 
